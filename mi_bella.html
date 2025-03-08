@@ -475,10 +475,10 @@
             // Nota: Debes reemplazar estos enlaces con los enlaces a tus fotos en Google Drive
             // Los enlaces deben ser públicos y ser del tipo "https://drive.google.com/uc?export=view&id=XXXXXXX"
             const photoUrls = [
-                "https://drive.google.com/uc?export=view&id=1WNHbvpCAEsCKV156S6HOWkJxaUW1FXRR",
-                "https://drive.google.com/uc?export=view&id=1WIHo88VNl2pJugsyYqX-XckEV5Ia3aG3",
-                "https://drive.google.com/uc?export=view&id=1WOHe2QYFgJYSeWKkHazAeSKv5Hqw2sUB",
-                "https://drive.google.com/uc?export=view&id=1WL8QI50fOuEm-ph3PBTJXr2uVeFbZwyO"
+                "https://raw.githubusercontent.com/JRMH99/IMAGENES/main/IMG_20241023_210547.jpg",
+    "https://raw.githubusercontent.com/JRMH99/IMAGENES/main/IMG_20241116_194002.jpg",
+    "https://raw.githubusercontent.com/JRMH99/IMAGENES/main/IMG_20250102_120806.jpg",
+    "https://raw.githubusercontent.com/JRMH99/IMAGENES/main/IMG_20250216_153650.jpg"
             ];
 
             // Obtener referencias a elementos DOM
@@ -634,7 +634,7 @@
 
             // Función para crear fotos flotantes aleatorias
             function createFloatingPhoto() {
-                if (photoUrls[0] === "https://drive.google.com/uc?export=view&id=1WNHbvpCAEsCKV156S6HOWkJxaUW1FXRR") return; // No crear fotos si no se han configurado las URLs
+                if (photoUrls[0] === "https://raw.githubusercontent.com/JRMH99/IMAGENES/main/IMG_20241023_210547.jpg") return; // No crear fotos si no se han configurado las URLs
 
                 const photo = document.createElement('img');
                 const randomPhotoIndex = Math.floor(Math.random() * photoUrls.length);
@@ -680,7 +680,7 @@
             animateHearts();
 
             // Cargar fotos si están configuradas
-            if (photoUrls[0] !== "https://drive.google.com/uc?export=view&id=1WNHbvpCAEsCKV156S6HOWkJxaUW1FXRR") {
+            if (photoUrls[0] !== "https://raw.githubusercontent.com/JRMH99/IMAGENES/main/IMG_20241023_210547.jpg") {
                 loadPhotos();
                 createFloatingPhoto(); // Iniciar la creación de fotos flotantes
             }
