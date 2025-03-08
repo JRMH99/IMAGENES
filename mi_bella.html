@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Amada Wilma ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 90%;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: #e84393;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .date-display {
+            font-size: 1.2rem;
+            color: #636e72;
+            margin-bottom: 1rem;
+        }
+
+        .countdown {
+            font-size: 1.2rem;
+            color: #e84393;
+            margin-bottom: 2rem;
+            padding: 0.5rem 1rem;
+            background-color: rgba(232, 67, 147, 0.1);
+            border-radius: 30px;
+            display: inline-block;
+        }
+
+        .message-container {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin: 1rem 0;
+            transition: all 0.5s ease;
+        }
+
+        .message {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            color: #2d3436;
+            margin-bottom: 1.5rem;
+        }
+
+        .signature {
+            font-style: italic;
+            text-align: right;
+            color: #e84393;
+            font-size: 1.1rem;
+        }
+
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #e84393;
+            transform: rotate(45deg);
+            opacity: 0;
+            animation: float 4s linear infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #e84393;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            top: 0;
+            left: -10px;
+        }
+
+        @keyframes float {
+            0% {
+                opacity: 0;
+                transform: rotate(45deg) translateY(0) scale(0.3);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: rotate(45deg) translateY(-20px) scale(0.6);
+            }
+
+            100% {
+                opacity: 0;
+                transform: rotate(45deg) translateY(-40px) scale(0.3);
+            }
+        }
+
+        .photo-gallery {
+            position: relative;
+            height: 300px;
+            margin: 2rem 0;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .photo {
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.5s ease;
+            transform-origin: center;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards, float-photo 10s ease-in-out infinite;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes float-photo {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            25% {
+                transform: translateY(-10px) rotate(2deg);
+            }
+
+            50% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            75% {
+                transform: translateY(10px) rotate(-2deg);
+            }
+
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+
+        .decoration {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: rgba(232, 67, 147, 0.1);
+            border-radius: 50%;
+        }
+
+        .decoration:nth-child(1) {
+            top: -30px;
+            left: -30px;
+            width: 120px;
+            height: 120px;
+        }
+
+        .decoration:nth-child(2) {
+            bottom: -40px;
+            right: -40px;
+            width: 150px;
+            height: 150px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: #636e72;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .message {
+                font-size: 1.1rem;
+            }
+
+            .container {
+                padding: 1.5rem;
+            }
+
+            .photo {
+                width: 180px;
+                height: 180px;
+            }
+        }
+
+        .controls {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        button {
+            background-color: #e84393;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(232, 67, 147, 0.3);
+        }
+
+        button:hover {
+            background-color: #fd79a8;
+            transform: translateY(-3px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .surprise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 10;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .surprise.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .surprise-content {
+            background-color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 90%;
+            animation: pop 0.5s ease;
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(0.8);
+            }
+
+            70% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .close-surprise {
+            background-color: #e84393;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .loader {
+            border: 4px solid rgba(232, 67, 147, 0.3);
+            border-top: 4px solid #e84393;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Estilos para la galería de fotos flotantes */
+        .floating-gallery {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+            overflow: hidden;
+        }
+
+        .floating-photo {
+            position: absolute;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translate(-50%, -50%) scale(0);
+            animation: float-in 12s linear infinite;
+            object-fit: cover;
+        }
+
+        @keyframes float-in {
+            0% {
+                transform: translate(-50%, 120%) scale(0.2) rotate(-10deg);
+                opacity: 0;
+            }
+
+            10% {
+                transform: translate(-50%, 80%) scale(0.4) rotate(-5deg);
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: translate(-50%, 50%) scale(0.5) rotate(5deg);
+                opacity: 1;
+            }
+
+            90% {
+                transform: translate(-50%, 20%) scale(0.4) rotate(10deg);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translate(-50%, -20%) scale(0.2) rotate(15deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="decoration"></div>
+        <div class="decoration"></div>
+        <h1>Para Mi Amada Wilma</h1>
+        <div class="date-display" id="currentDate"></div>
+        <div class="countdown" id="countdown">Próximo mensaje en: --:--:--</div>
+
+        <div class="photo-gallery" id="photoGallery"></div>
+
+        <div class="message-container">
+            <p class="message" id="dailyMessage">Cargando mensaje especial para ti...</p>
+            <p class="signature">Con todo mi amor, Jhamil ❤️</p>
+        </div>
+
+        <div class="controls">
+            <button id="surpriseBtn">Sorpresa del día</button>
+        </div>
+
+        <div class="hearts" id="heartsContainer"></div>
+    </div>
+
+    <div class="surprise" id="surpriseModal">
+        <div class="surprise-content">
+            <h2 id="surpriseTitle">¡Sorpresa especial!</h2>
+            <p id="surpriseMessage"></p>
+            <button class="close-surprise" id="closeSurprise">Cerrar</button>
+        </div>
+    </div>
+
+    <div class="floating-gallery" id="floatingGallery"></div>
+
+    <footer>
+        Creado con amor para Wilma Gladys Huasco Ticona por Jhamil Rodrigo Mamani Huarachi
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mensajes para cada día de la semana
+            const messages = [
+                "Wilma, mi amor, cada mañana agradezco tenerte a mi lado. Tu sonrisa ilumina nuestro hogar y tu fortaleza nos mantiene unidos. Eres el regalo más bello que la vida me ha dado. Te amo infinitamente.",
+
+                "Hoy quiero recordarte lo extraordinaria que eres como esposa y como madre. Ver cómo cuidas de nuestra pequeña Wara con tanto amor me llena el corazón de orgullo. Eres el pilar fundamental de nuestra familia.",
+
+                "Recuerdo el día que nos conocimos como si fuera ayer. Desde entonces, cada momento a tu lado ha sido un tesoro. Gracias por elegirme cada día y por construir junto a mí este hermoso hogar lleno de amor.",
+
+                "Tu paciencia y ternura con nuestra pequeña Wara me enseñan cada día a ser mejor persona. Eres la madre más amorosa y la esposa más maravillosa. Nuestra hija tiene el mejor ejemplo a seguir.",
+
+                "Admiro tu fuerza, tu valentía y tu corazón bondadoso. Eres una mujer excepcional que merece ser celebrada no solo hoy, sino todos los días. Gracias por compartir tu vida conmigo.",
+
+                "Cuando veo a nuestra pequeña Wara, veo tus ojos, tu sonrisa y tu bondad. Gracias por darme el regalo más precioso: nuestra familia. Prometo cuidarlas y amarlas siempre con toda mi alma.",
+
+                "Siete días no son suficientes para expresar todo lo que siento por ti. Este es solo el comienzo de los mensajes de amor que mereces recibir cada día por el resto de nuestras vidas. Te amo sin límites."
+            ];
+
+            // Sorpresas para cada día
+            const surprises = [
+                "En este Día de la Mujer, quiero que sepas que eres mi universo entero. Cada logro tuyo lo celebro como propio, cada sonrisa tuya es mi felicidad. Te admiro más de lo que las palabras pueden expresar.",
+
+                "¿Recuerdas nuestro primer beso? Yo lo recuerdo como si fuera ayer, y cada día me enamoro más de ti. Eres el amor de mi vida, mi compañera, mi mejor amiga.",
+
+                "Hoy quiero prometerte que lucharé cada día por hacerte feliz, por ser el esposo que mereces y el padre que nuestra pequeña Wara necesita. Ustedes son mi mayor tesoro.",
+
+                "Wilma y Wara, los dos amores de mi vida que comparten esa sonrisa que me derrite el corazón. Verlas juntas es el regalo más hermoso que puedo recibir cada día.",
+
+                "Gracias por tu paciencia en los momentos difíciles, por tu alegría en los buenos momentos, y por tu amor incondicional en todo momento. Eres mi fortaleza.",
+
+                "Cada noche, cuando veo a nuestra pequeña Wara dormir, pienso en lo afortunado que soy de tener una familia tan hermosa. Gracias por convertir mi vida en un sueño hecho realidad.",
+
+                "Mi Wilma, eres el primer pensamiento en mi mente al despertar y el último antes de dormir. Mi corazón te pertenece hoy y siempre. Te amo más allá de las estrellas."
+            ];
+
+            // URLs de las fotos (reemplaza estos enlaces con tus propios enlaces de Google Drive)
+            // Nota: Debes reemplazar estos enlaces con los enlaces a tus fotos en Google Drive
+            // Los enlaces deben ser públicos y ser del tipo "https://drive.google.com/uc?export=view&id=XXXXXXX"
+            const photoUrls = [
+                "https://drive.google.com/uc?export=view&id=1WNHbvpCAEsCKV156S6HOWkJxaUW1FXRR",
+                "https://drive.google.com/uc?export=view&id=1WIHo88VNl2pJugsyYqX-XckEV5Ia3aG3",
+                "https://drive.google.com/uc?export=view&id=1WOHe2QYFgJYSeWKkHazAeSKv5Hqw2sUB",
+                "https://drive.google.com/uc?export=view&id=1WL8QI50fOuEm-ph3PBTJXr2uVeFbZwyO"
+            ];
+
+            // Obtener referencias a elementos DOM
+            const dailyMessage = document.getElementById('dailyMessage');
+            const currentDateDisplay = document.getElementById('currentDate');
+            const countdownDisplay = document.getElementById('countdown');
+            const heartsContainer = document.getElementById('heartsContainer');
+            const surpriseBtn = document.getElementById('surpriseBtn');
+            const surpriseModal = document.getElementById('surpriseModal');
+            const surpriseMessage = document.getElementById('surpriseMessage');
+            const closeSurprise = document.getElementById('closeSurprise');
+            const photoGallery = document.getElementById('photoGallery');
+            const floatingGallery = document.getElementById('floatingGallery');
+
+            // Almacenamiento del estado en localStorage
+            let startDate = localStorage.getItem('startDate');
+            let lastMessageTime = localStorage.getItem('lastMessageTime');
+            let currentDayOffset = parseInt(localStorage.getItem('currentDayOffset') || '0');
+
+            // Si es la primera vez, inicializar
+            if (!startDate) {
+                startDate = new Date().toISOString();
+                lastMessageTime = new Date().toISOString();
+                currentDayOffset = 0;
+                localStorage.setItem('startDate', startDate);
+                localStorage.setItem('lastMessageTime', lastMessageTime);
+                localStorage.setItem('currentDayOffset', currentDayOffset.toString());
+            }
+
+            // Función para actualizar la fecha y el mensaje
+            function updateDateAndMessage() {
+                const start = new Date(startDate);
+                const current = new Date();
+                const lastMessage = new Date(lastMessageTime);
+
+                // Comprobar si han pasado 24 horas desde el último mensaje
+                const hoursPassed = (current - lastMessage) / (1000 * 60 * 60);
+
+                if (hoursPassed >= 24) {
+                    // Actualizar al siguiente día
+                    currentDayOffset++;
+                    lastMessageTime = current.toISOString();
+                    localStorage.setItem('lastMessageTime', lastMessageTime);
+                    localStorage.setItem('currentDayOffset', currentDayOffset.toString());
+                }
+
+                // Formatear fecha
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                currentDateDisplay.textContent = current.toLocaleDateString('es-ES', options);
+
+                // Mostrar mensaje del día (módulo 7 para ciclar a través de los 7 mensajes)
+                const dayIndex = Math.min(currentDayOffset % 7, 6);
+                dailyMessage.textContent = messages[dayIndex];
+
+                // Actualizar contador regresivo
+                updateCountdown();
+            }
+
+            // Función para actualizar el contador regresivo
+            function updateCountdown() {
+                const now = new Date();
+                const lastMessage = new Date(lastMessageTime);
+
+                // Calcular cuándo será el próximo mensaje (24 horas después del último)
+                const nextMessage = new Date(lastMessage);
+                nextMessage.setHours(nextMessage.getHours() + 24);
+
+                // Calcular tiempo restante
+                const timeRemaining = nextMessage - now;
+
+                if (timeRemaining <= 0) {
+                    // Ya es hora de un nuevo mensaje
+                    countdownDisplay.textContent = "¡Es hora de un nuevo mensaje!";
+                    updateDateAndMessage();
+                } else {
+                    // Formatear tiempo restante
+                    const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+                    countdownDisplay.textContent = `Próximo mensaje en: ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                    // Actualizar cada segundo
+                    setTimeout(updateCountdown, 1000);
+                }
+            }
+
+            // Mostrar sorpresa del día
+            surpriseBtn.addEventListener('click', function () {
+                const dayIndex = Math.min(currentDayOffset % 7, 6);
+                surpriseMessage.textContent = surprises[dayIndex];
+                surpriseModal.classList.add('active');
+                animateHearts();
+            });
+
+            // Cerrar modal de sorpresa
+            closeSurprise.addEventListener('click', function () {
+                surpriseModal.classList.remove('active');
+            });
+
+            // Crear corazones flotantes
+            function createHeart() {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                heart.style.opacity = Math.random() * 0.5 + 0.3;
+                heart.style.transform = `rotate(45deg) scale(${Math.random() * 0.6 + 0.4})`;
+                heartsContainer.appendChild(heart);
+
+                // Eliminar el corazón después de la animación
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }
+
+            // Crear corazones aleatorios
+            function animateHearts() {
+                for (let i = 0; i < 10; i++) {
+                    setTimeout(createHeart, i * 300);
+                }
+            }
+
+            // Función para cargar las fotos en la galería principal
+            function loadPhotos() {
+                photoGallery.innerHTML = '';
+
+                // Posiciones para las fotos (izquierda, centro, derecha)
+                const positions = [
+                    { top: '50%', left: '25%', delay: 0, rotate: '-5deg' },
+                    { top: '50%', left: '50%', delay: 0.5, rotate: '0deg' },
+                    { top: '50%', left: '75%', delay: 1, rotate: '5deg' }
+                ];
+
+                // Crear elementos de imagen y añadirlos con posiciones diferentes
+                photoUrls.forEach((url, index) => {
+                    if (index < 3) { // Solo mostramos 3 fotos en la galería principal
+                        const photo = document.createElement('img');
+                        photo.src = url;
+                        photo.alt = 'Foto familiar';
+                        photo.classList.add('photo');
+
+                        // Aplicar estilos de posición
+                        photo.style.top = positions[index].top;
+                        photo.style.left = positions[index].left;
+                        photo.style.transform = `translate(-50%, -50%) rotate(${positions[index].rotate})`;
+                        photo.style.animationDelay = `${positions[index].delay}s`;
+
+                        photoGallery.appendChild(photo);
+                    }
+                });
+            }
+
+            // Función para crear fotos flotantes aleatorias
+            function createFloatingPhoto() {
+                if (photoUrls[0] === "https://drive.google.com/uc?export=view&id=1WNHbvpCAEsCKV156S6HOWkJxaUW1FXRR") return; // No crear fotos si no se han configurado las URLs
+
+                const photo = document.createElement('img');
+                const randomPhotoIndex = Math.floor(Math.random() * photoUrls.length);
+                photo.src = photoUrls[randomPhotoIndex];
+                photo.alt = 'Foto familiar flotante';
+                photo.classList.add('floating-photo');
+
+                // Tamaño aleatorio
+                const size = Math.floor(Math.random() * 80) + 100; // Entre 100px y 180px
+                photo.style.width = `${size}px`;
+                photo.style.height = `${size}px`;
+
+                // Posición horizontal aleatoria
+                const xPos = Math.floor(Math.random() * 80) + 10; // Entre 10% y 90%
+                photo.style.left = `${xPos}%`;
+                photo.style.top = '50%';
+
+                // Rotación aleatoria
+                const rotation = Math.floor(Math.random() * 30) - 15; // Entre -15 y 15 grados
+                photo.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+
+                // Duración aleatoria
+                const duration = Math.floor(Math.random() * 5) + 10; // Entre 10s y 15s
+                photo.style.animationDuration = `${duration}s`;
+
+                // Eliminar después de la animación
+                photo.addEventListener('animationend', () => {
+                    photo.remove();
+                });
+
+                floatingGallery.appendChild(photo);
+
+                // Programar la siguiente foto flotante
+                const delay = Math.random() * 3000 + 2000; // Entre 2 y 5 segundos
+                setTimeout(createFloatingPhoto, delay);
+            }
+
+            // Iniciar animación de corazones periódicamente
+            setInterval(animateHearts, 10000);
+
+            // Inicializar la página
+            updateDateAndMessage();
+            animateHearts();
+
+            // Cargar fotos si están configuradas
+            if (photoUrls[0] !== "https://drive.google.com/uc?export=view&id=1WNHbvpCAEsCKV156S6HOWkJxaUW1FXRR") {
+                loadPhotos();
+                createFloatingPhoto(); // Iniciar la creación de fotos flotantes
+            }
+
+            // Comprobar regularmente si es hora de actualizar el mensaje
+            setInterval(function () {
+                updateDateAndMessage();
+            }, 60000); // Comprobar cada minuto
+        });
+    </script>
+</body>
+
+</html>
